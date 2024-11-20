@@ -36,5 +36,6 @@ public class TC_003Test extends BaseClass{
 	public void sample()
 	{
 		System.out.println("executing sample");
+		System.out.println("hello");
 	}
 }
