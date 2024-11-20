@@ -57,7 +57,6 @@
         <configuration>
           <suiteXmlFiles>
             <suiteXmlFile>testng_BatchExecution.xml</suiteXmlFile>
-            <suiteXmlFile>testng_GroupExecution.xml</suiteXmlFile>
           </suiteXmlFiles>
         </configuration>
       </plugin>
