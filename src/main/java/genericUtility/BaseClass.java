@@ -23,10 +23,15 @@ public class BaseClass {
 	public SeleniumUtility sUtil=new SeleniumUtility();
 	public PropertiesUtility pUtil=new PropertiesUtility();
 	public ExcelUtility eUtil=new ExcelUtility();
+	public DatabaseUtility dbUtil=new DatabaseUtility();
 	
 	@BeforeSuite(alwaysRun = true)
-	public void dbConnection()
+	public void dbConnection() throws Exception
 	{
+		String dbURL=pUtil.getDataFromPropertiesFile("DBURL");
+		String dbUN=pUtil.getDataFromPropertiesFile("DBUN");
+		String dbPWD=pUtil.getDataFromPropertiesFile("DBPWD");
+		dbUtil.connectToDatabase(dbURL, dbUN, dbPWD);
 		System.out.println("DB connection created");
 	}
 	
@@ -61,8 +66,10 @@ public class BaseClass {
 	@BeforeMethod(alwaysRun = true)
 	public void loginOperation() throws Exception
 	{
-		String UN=pUtil.getDataFromPropertiesFile("username");
-		String PWD=pUtil.getDataFromPropertiesFile("password");
+//		String UN=pUtil.getDataFromPropertiesFile("username");
+//		String PWD=pUtil.getDataFromPropertiesFile("password");
+		String UN=dbUtil.fetchDataFromTable("User1", "username");
+		String PWD=dbUtil.fetchDataFromTable("User1", "password");
 		LoginPage lp=new LoginPage(driver);
 		lp.loginToApplication(UN, PWD);
 		System.out.println("Login done successfully");
@@ -84,8 +91,9 @@ public class BaseClass {
 	}
 	
 	@AfterSuite(alwaysRun = true)
-	public void closeDBConnection()
+	public void closeDBConnection() throws Exception
 	{
+		dbUtil.closeDBConnection();
 		System.out.println("DB connection closed");
 	}
 }

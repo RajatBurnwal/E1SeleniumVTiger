@@ -3,11 +3,17 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="sample.RetryAnalyzerPractice">
+      <class name="tcRepo.TC_001Test">
         <methods>
-          <include name="sample"/>
+          <include name="closeDBConnection"/>
+          <include name="dbConnection"/>
+          <include name="logoutOperation"/>
+          <include name="LE_01Test"/>
+          <include name="loginOperation"/>
+          <include name="closeBrowser"/>
+          <include name="launchBrowser"/>
         </methods>
-      </class> <!-- sample.RetryAnalyzerPractice -->
+      </class> <!-- tcRepo.TC_001Test -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
